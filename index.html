@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Quiz App</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	
+
+	<div class="container">
+		<div class="col s7 offset-s5" style="background-color:transparent">
+
+			<form action="#" id="quiz">
+				
+
+
+			<div class="question" v-for="question in questions">
+			<!-- Image  -->
+			<div class="image center">
+				<img src="{{ question.picture_url }}" alt="">
+			</div>
+			<p class="center-align">
+				<span> {{ question.question }}</span> <br>
+				<input type="radio" name="question1">
+				<label for="question1">Si</label>
+				
+				<input type="radio" name="question1">
+				<label for="question1">No</label>
+				
+
+			</p>
+
+	
+
+			</div>
+
+			
+
+
+
+			</form>
+			
+		</div>
+	</div>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
