@@ -1,53 +1,90 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Quiz App</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.css">
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-	
-
-	<div class="container">
-		<div class="col s7 offset-s5" style="background-color:transparent">
-
-			<form action="#" id="quiz">
-				
 
 
-			<div class="question" v-for="question in questions">
-			<!-- Image  -->
-			<div class="image center">
-				<img src="{{ question.picture_url }}" alt="">
-			</div>
-			<p class="center-align">
-				<span> {{ question.question }}</span> <br>
-				<input type="radio" name="question1">
-				<label for="question1">Si</label>
-				
-				<input type="radio" name="question1">
-				<label for="question1">No</label>
-				
+    <div class="container">
+        <div class="quiz-wrapper">
+            <div class="col s7 offset-s5" style="background-color:transparent">
 
-			</p>
-
-	
-
-			</div>
-
-			
+                <form action="#" id="quiz">
 
 
+                    <div class="section">
+                        <div class="question slide" v-for="question in questions" data-anchor="{{ question.id }}">
+                            <!-- Image  -->
+                            <div class="image center">
+                                <img src="{{ question.picture_url }}" alt="">
+                            </div>
+                            <p class="center-align">
+                                <span class="question-text"> {{ question.question }}</span>
+                                <br>
 
-			</form>
-			
-		</div>
-	</div>
+                                <template v-for="optionQuestion in question.options">
 
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-	<script src="app.js"></script>
+                                    <input type="radio" class="with-gap" value="{{ optionQuestion }}" id="question{{ question.id }}-{{ $index }}" name="question{{ question.id }}"  v-model="question.chosen">
+                                    <label for="question{{ question.id }}-{{ $index }}">{{ optionQuestion }}</label>
+
+                                    <span>Picked: {{ question.chosen }}</span>
+                                </template>
+                                <br>
+
+                                <button class="waves-effect waves-light btn next" id="next" data-next="{{ question.buttonNext }} " v-if="question.buttonNext != 0">Siguiente</button>
+
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <pre> {{ $data | json }} </pre>
+
+
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.quiz-wrapper').fullpage({
+                sectionsColor: ['transparent'],
+                anchors: ['1', '2', '3', '4', '5', '6', '7'],
+                menu: '#menu',
+                css3: true,
+                scrollingSpeed: 1000,
+                navigation: false,
+                lockAnchors: false,
+                slidesNavPosition: 'bottom',
+                controlArrows: false
+            });
+
+            $(document).on('click', '.next', function(){
+              $.fn.fullpage.moveSlideRight();
+
+            });
+        });
+    </script>
+
+    <script src="app.js"></script>
 </body>
+
 </html>

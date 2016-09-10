@@ -1,3 +1,8 @@
+body{
+	background-image: url("baconpattern.jpg");
+	background-repeat: repeat;
+}
+
 .center{
 	margin-left: auto;
 	margin-right: auto;
@@ -7,11 +12,30 @@
 .image{
 	max-width: 250px;
 	border-radius: 50%;
-	border: 2px dotted orange;
+	border: 8px solid #D73A26;
 	overflow: hidden;
 }
 .image img{
 	max-width: 100%;
 	height: auto;
 	display: block;
+}
+.question-text{
+	font-family: 'Architects Daughter';
+	font-size: 2.3rem;
+	color:white;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after{
+	border:2px solid #D73A26;
+	background-color: #D73A26;
+}
+[type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after{
+	border:2px solid white;
+}
+.question label{
+	color:white;
+	text-transform: uppercase;
+	font-size: 1.2rem !important;
 }
