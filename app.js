@@ -48,7 +48,8 @@ var vm = new Vue({
 				picture_url: 'https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg',
 				options: ['En el horno','Microondas', 'Sartén'],
 				chosen: '',
-				buttonNext: 7
+				buttonNext: 7,
+				imageOptions: ['https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg','https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg','https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg']
 			},
 			{
 				id: 7,
@@ -56,11 +57,12 @@ var vm = new Vue({
 				picture_url: 'https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg',
 				options: ['Cocinar','Acompañante(Guarnición)', 'Enrollado en cualquier cosa', 'Tostado en pedacitos encima de la comida para agregar textura'],
 				chosen: '',
-				buttonNext: 0
+				buttonNext: 0,
+				imageOptions: ['https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg','https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg','https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg','https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg']
 			}
 
 		],
-		testResult: " ",
+		testResult: "resultado",
 		heroe: 0,
 		vanguardista: 0,
 		toper: 0,
@@ -79,7 +81,7 @@ var vm = new Vue({
 			resultado.push(this.tradicional);
 			resultado.push(this.gourmet);
 			resultado.push(this.tocinero);
-			
+
 			eres = Math.max.apply(null, resultado)
 
 			if(eres === this.heroe){
@@ -137,7 +139,7 @@ var vm = new Vue({
 					this.tradicional = -1;
 				}else{
 					this.gourmet = -1;
-				}				
+				}
 			}else if(question.id === 5){
 				if(question.chosen.toLowerCase() === 'verdadero'){
 					this.tradicional != -1 ? this.tradicional += 5 : -1;

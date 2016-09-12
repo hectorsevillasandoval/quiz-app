@@ -2,7 +2,26 @@ body{
 	background-image: url("baconpattern.jpg");
 	background-repeat: repeat;
 }
-
+h1, h2{
+	font-family: 'Pacifico';
+}
+h1{
+	font-size: 2.5rem;
+	line-height: 1.2;
+}
+h1 em{
+	font-size: 4.5rem;
+}
+.main-title {
+	position: relative;
+}
+.special, .special-resultado{
+	font-size: 4.2rem;
+}
+.main-title span{
+	display: inline-block;
+	margin-bottom: 1.2rem;
+}
 .center{
 	margin-left: auto;
 	margin-right: auto;
@@ -10,7 +29,7 @@ body{
 
 }
 .image{
-	max-width: 250px;
+	max-width: 230px;
 	border-radius: 50%;
 	border: 8px solid #D73A26;
 	overflow: hidden;
@@ -22,10 +41,19 @@ body{
 }
 .question-text{
 	font-family: 'Architects Daughter';
-	font-size: 2.3rem;
+	font-size: 2rem;
 	color:white;
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
+}
+.icono{
+	background-color: #D73A26;
+	color:white;
+	font-size: 1.5rem;
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
 }
 [type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after{
 	border:2px solid #D73A26;
