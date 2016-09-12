@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.css">
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="hideshare.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
@@ -19,10 +21,12 @@
         <div class="quiz-wrapper">
             <div class="col s7 offset-s5" style="background-color:transparent">
 
-                <form action="#" id="quiz">
+<div class="section">
+
+                <form action="#" id="quiz" v-on:submit.prevent="resultados" >
 
 
-                    <div class="section">
+                    
                         <div class="question slide" v-for="question in questions" data-anchor="{{ question.id }}">
                             <!-- Image  -->
                             <div class="image center">
@@ -41,16 +45,34 @@
                                 </template>
                                 <br>
 
-                                <button class="waves-effect waves-light btn next" id="next" data-next="{{ question.buttonNext }} " v-if="question.buttonNext != 0">Siguiente</button>
+                                <button class="waves-effect waves-light red darken-1 btn next" id="next" data-next="{{ question.buttonNext }} " v-if="question.buttonNext != 0" @click.prevent = "addElement(question)">Siguiente</button>
+
+                                <button type="submit" class="waves-effect waves-light red darken-1 btn end" id="send" v-else>Ver Resultado</button>
+                                
 
 
                             </p>
 
                         </div>
 
-                    </div>
+                    
 
                 </form>
+                </div>
+
+		<!-- RESULTADO -->
+
+		<div class="section">
+			
+			<h1>Usted es un <em>{{ testResult }}</em></h1>
+
+			<div id="share">
+				<a href="#" class="share">Share Me</a>
+			</div>
+
+		</div>
+
+
             </div>
 
             <pre> {{ $data | json }} </pre>
@@ -62,6 +84,8 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="hideshare.js"></script>
+
  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -72,19 +96,49 @@
                 css3: true,
                 scrollingSpeed: 1000,
                 navigation: false,
-                lockAnchors: false,
+                lockAnchors: true,
                 slidesNavPosition: 'bottom',
-                controlArrows: false
+                controlArrows: false,
+                fitToSection: false,
+                autoScrolling:true
             });
 
-            $(document).on('click', '.next', function(){
+            $.fn.fullpage.setAllowScrolling(false, 'left, right, down, top');
+
+            $(document).on('click', '.next', function(e){
               $.fn.fullpage.moveSlideRight();
+              e.preventDefault();
 
             });
+
+            $(document).on('click', '.end', function(e){
+              $.fn.fullpage.moveSectionDown();
+              //e.preventDefault();
+
+            });
+
+
+            $(".share").hideshare();
+
+            
         });
     </script>
 
     <script src="app.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDrji4BK4pa_ud7Ro4PkYTgxGPGrUfEdek",
+    authDomain: "vue-quiz.firebaseapp.com",
+    databaseURL: "https://vue-quiz.firebaseio.com",
+    storageBucket: "",
+  };
+  firebase.initializeApp(config);
+</script>
+    
 </body>
 
 </html>

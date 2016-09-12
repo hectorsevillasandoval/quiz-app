@@ -39,3 +39,6 @@ body{
 	text-transform: uppercase;
 	font-size: 1.2rem !important;
 }
+button{
+	margin-top: 2rem;
+}

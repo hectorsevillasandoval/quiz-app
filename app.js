@@ -59,6 +59,105 @@ var vm = new Vue({
 				buttonNext: 0
 			}
 
-		]
+		],
+		testResult: " ",
+		heroe: 0,
+		vanguardista: 0,
+		toper: 0,
+		tradicional: 0,
+		gourmet: 0,
+		tocinero: 0
+	},
+	methods:{
+		resultados: function(){
+
+			var resultado = [], eres;
+
+			resultado.push(this.heroe);
+			resultado.push(this.vanguardista);
+			resultado.push(this.toper);
+			resultado.push(this.tradicional);
+			resultado.push(this.gourmet);
+			resultado.push(this.tocinero);
+			
+			eres = Math.max.apply(null, resultado)
+
+			if(eres === this.heroe){
+				this.testResult = "Heroe";
+			}else if(eres === this.vanguardista){
+				this.testResult = "Vanguardista";
+			}else if(eres === this.toper){
+				this.testResult = "Toper";
+			}else if(eres === this.tradicional){
+				this.testResult = "Tradicional";
+			}else if(eres === this.gourmet){
+				this.testResult = "Gourmet";
+			}else{
+				this.testResult = "Tocinero";
+			}
+
+		},
+		addElement: function(question){
+			if(question.id === 1){
+				if(question.chosen.toLowerCase() === 'si'){
+					this.heroe != -1 ? this.heroe += 1 : -1;
+					this.vanguardista != -1 ? this.vanguardista += 5: -1;
+					this.toper != -1 ? this.toper += 1: -1;
+					this.tradicional = -1;
+				}else{
+					this.tradicional != -1 ? this.tradicional += 1: -1;
+					this.vanguardista != -1 ? this.vanguardista += 1: -1;
+
+				}
+
+			}else if(question.id === 2){
+				if(question.chosen.toLowerCase() === 'si'){
+					this.vanguardista != -1 ? this.vanguardista += 5: -1;
+					this.gourmet != -1 ? this.gourmet += 3: -1;
+					this.tradicional = -1;
+				}else if(question.chosen.toLowerCase() === 'no'){
+					this.tradicional != -1 ? this.tradicional += 1: -1;
+					this.vanguardista = -1;
+
+				}else{
+					this.tradicional != -1 ? this.tradicional += 1: -1;
+				}
+
+
+			}else if(question.id === 3){
+				if(question.chosen.toLowerCase() === 'verdadero'){
+					this.heroe != -1 ? this.heroe += 5 : -1;
+					this.toper != -1 ? this.toper += 5: -1;
+				} // falso no hay opciones
+
+			}else if(question.id === 4){
+				if(question.chosen.toLowerCase() === 'si'){
+					this.gourmet != -1 ? this.gourmet += 5 : -1;
+					this.vanguardista != -1 ? this.vanguardista += 5: -1;
+					this.tradicional = -1;
+				}else{
+					this.gourmet = -1;
+				}				
+			}else if(question.id === 5){
+				if(question.chosen.toLowerCase() === 'verdadero'){
+					this.tradicional != -1 ? this.tradicional += 5 : -1;
+					this.vanguardista = -1;
+				}// No hay opciones
+			}else if(question.id === 6){
+				if(question.chosen.toLowerCase() === 'en el horno'){
+					this.gourmet != -1 ? this.gourmet += 4 : -1;
+					this.vanguardista != -1 ? this.vanguardista += 3 : -1;
+				}else if(question.chosen.toLowerCase() === 'microondas'){
+					this.toper != -1 ? this.toper += 2 : -1;
+					this.heroe != -1 ? this.heroe += 4 : -1;
+					this.vanguardista != -1 ? this.vanguardista += 5 : -1;
+
+				}else{
+					this.tocinero != -1 ? this.tocinero += 5 : -1;
+					this.tradicional != -1 ? this.tradicional += 5 : -1;
+
+				}
+			}
+		}
 	}
 });
