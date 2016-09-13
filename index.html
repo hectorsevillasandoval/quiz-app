@@ -18,9 +18,11 @@
 <body>
 
 
-    <div class="container">
-        <div class="quiz-wrapper">
-            <div class="col s7 offset-s5" style="background-color:transparent">
+
+    <div class=" ">
+    	
+        <div class="quiz-wrapper row">
+            <div class="col s10 offset-s1" style="background-color:transparent">
 
               <div class="section center-align">
                 <h1 class="center-align white-text main-title">
@@ -32,37 +34,108 @@
 
 <div class="section">
 
-                <form action="#" id="quiz" v-on:submit.prevent="resultados" >
+                <form action="#" id="quiz"  >
 
 
 
                         <div class="question slide" v-for="question in questions" data-anchor="{{ question.id }}">
-                            <!-- Image  -->
-                            <div class="image center">
-                                <img src="{{ question.picture_url }}" alt="" class="responsive-img circle">
-                            </div>
+                            
                             <p class="center-align">
                                 <span class="icono"> {{ question.id }} </span>
                                 <span class="question-text"> {{ question.question }}</span>
                                 <br>
+							</p>
+                            <div v-if="question.picture_url.length != 0" >
+
+                            <!-- Image  -->
+                            <div class="image center">
+                                <img src="{{ question.picture_url }}" alt="" class="responsive-img circle">
+                            </div>
+
+
+                            	
+                            
+
+                                <div class="center-align">
+
 
                                 <template v-for="optionQuestion in question.options">
 
+									
+										
+
+									
 
                                     <input type="radio" class="with-gap" value="{{ optionQuestion }}" id="question{{ question.id }}-{{ $index }}" name="question{{ question.id }}"  v-model="question.chosen">
                                     <label for="question{{ question.id }}-{{ $index }}">{{ optionQuestion }}</label>
+									
 
+									
 
                                 </template>
-                                <br>
 
-                                <button :class="question.chosen.length ? ['waves-effect', 'waves-light', 'red', 'darken-1', 'btn', 'next'] : ['btn', 'disabled']" id="next" data-next="{{ question.buttonNext }} " v-if="question.buttonNext != 0" @click.prevent = "addElement(question)">Siguiente</button>
+                                </div>
 
-                                <button type="submit" :class="question.chosen.length ? ['waves-effect', 'waves-light', 'red', 'darken-1', 'btn', 'end'] : ['btn', 'disabled']" id="send" v-else>Ver Resultado</button>
+                                </div>
+                                <div v-else>
+                                	
+                                	<div class="left-align">
+<div class="row ">
+
+                                <template v-for="optionQuestion in question.imageOptions">
+
+									
+									
+            
+            <div class="col s6">
+            <div class="row valign-wrapper">
+            	<div class="col s4">
+            	<img :src="optionQuestion" alt="" class="circle responsive-img image2 valign"> <!-- notice the "circle" class -->
+            		
+            	</div>
+
+            	<div class="col s8">
+
+            	<span class="black-text">
+                <input type="radio" class="with-gap" value="{{ question.options[$index] }}" id="question{{ question.id }}-{{ $index }}" name="question{{ question.id }}"  v-model="question.chosen">
+                                    <label for="question{{ question.id }}-{{ $index }}">{{ question.options[$index] }}</label>
+              </span>
+            		
+            	</div>
+
+            </div>
+
+            
+              
+            </div>
+          
+
+									
+									
+									
+
+									
+
+                                </template>
+                                </div>
+
+                                </div>
+
+                                </div>
 
 
+                                <p class="center-align">
+                                	
 
-                            </p>
+                                
+
+                                	<button :class="question.chosen.length ? ['waves-effect', 'waves-light', 'red', 'darken-1', 'btn', 'next'] : ['btn', 'disabled']" id="next" data-next="{{ question.buttonNext }} " v-if="question.buttonNext != 0" @click.prevent = "addElement(question)">Siguiente</button>
+
+                                	<button type="button" :class="question.chosen.length ? ['waves-effect', 'waves-light', 'red', 'darken-1', 'btn', 'end'] : ['btn', 'disabled']" id="send" @click.prevent="addElement(question)" v-else>Ver Resultado</button>
+
+
+								</p>
+                            
 
                         </div>
 
@@ -154,6 +227,7 @@
             });
 
             /*$(".special").fitText(0.8, { minFontSize: '20px', maxFontSize: '100px' });*/
+            
 
         });
     </script>

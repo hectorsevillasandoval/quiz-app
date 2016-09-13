@@ -29,16 +29,18 @@ h1 em{
 
 }
 .image{
-	max-width: 230px;
+	max-width: 200px;
 	border-radius: 50%;
 	border: 8px solid #D73A26;
 	overflow: hidden;
+	margin-bottom: 1.2rem;
 }
 .image img{
 	max-width: 100%;
 	height: auto;
 	display: block;
 }
+
 .question-text{
 	font-family: 'Architects Daughter';
 	font-size: 2rem;
@@ -65,7 +67,8 @@ h1 em{
 .question label{
 	color:white;
 	text-transform: uppercase;
-	font-size: 1.2rem !important;
+	font-size: 14px !important;
+	text-align: left;
 }
 button{
 	margin-top: 2rem;

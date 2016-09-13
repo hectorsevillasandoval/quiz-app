@@ -45,7 +45,7 @@ var vm = new Vue({
 			{
 				id: 6,
 				question: 'Mi forma favorita de cocinar Bacon es:',
-				picture_url: 'https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg',
+				picture_url: '',
 				options: ['En el horno','Microondas', 'Sartén'],
 				chosen: '',
 				buttonNext: 7,
@@ -54,7 +54,7 @@ var vm = new Vue({
 			{
 				id: 7,
 				question: 'El bacon se aprovecha mejor cuando se usa para?',
-				picture_url: 'https://bigoven-res.cloudinary.com/image/upload/t_recipe-256/pork-medallions-wrapped-in-bacon.jpg',
+				picture_url: '',
 				options: ['Cocinar','Acompañante(Guarnición)', 'Enrollado en cualquier cosa', 'Tostado en pedacitos encima de la comida para agregar textura'],
 				chosen: '',
 				buttonNext: 0,
@@ -73,30 +73,7 @@ var vm = new Vue({
 	methods:{
 		resultados: function(){
 
-			var resultado = [], eres;
-
-			resultado.push(this.heroe);
-			resultado.push(this.vanguardista);
-			resultado.push(this.toper);
-			resultado.push(this.tradicional);
-			resultado.push(this.gourmet);
-			resultado.push(this.tocinero);
-
-			eres = Math.max.apply(null, resultado)
-
-			if(eres === this.heroe){
-				this.testResult = "Heroe";
-			}else if(eres === this.vanguardista){
-				this.testResult = "Vanguardista";
-			}else if(eres === this.toper){
-				this.testResult = "Toper";
-			}else if(eres === this.tradicional){
-				this.testResult = "Tradicional";
-			}else if(eres === this.gourmet){
-				this.testResult = "Gourmet";
-			}else{
-				this.testResult = "Tocinero";
-			}
+			
 
 		},
 		addElement: function(question){
@@ -159,6 +136,53 @@ var vm = new Vue({
 					this.tradicional != -1 ? this.tradicional += 5 : -1;
 
 				}
+			}else{
+
+				if(question.chosen.toLowerCase() === 'cocinar'){
+					this.tocinero != -1 ? this.tocinero += 5 : -1;
+				}else if(question.chosen.toLowerCase() === 'acompañante(guarnición)'){
+					this.tradicional != -1 ? this.tradicional += 5 : -1;
+
+				}else if(question.chosen.toLowerCase() === 'enrollado en cualquier cosa'){
+
+					this.heroe != -1 ? this.heroe += 1 : -1;
+					this.vanguardista != -1 ? this.vanguardista += 3 : -1;
+					this.gourmet != -1 ? this.gourmet += 5 : -1;
+				}else{
+					this.heroe != -1 ? this.heroe += 1 : -1;
+					this.toper != -1 ? this.toper += 5 : -1;
+
+				}
+
+			}
+
+
+
+			// Resultado
+
+			var resultado = [], eres;
+
+			resultado.push(this.heroe);
+			resultado.push(this.vanguardista);
+			resultado.push(this.toper);
+			resultado.push(this.tradicional);
+			resultado.push(this.gourmet);
+			resultado.push(this.tocinero);
+
+			eres = Math.max.apply(null, resultado)
+
+			if(eres === this.heroe){
+				this.testResult = "Heroe";
+			}else if(eres === this.vanguardista){
+				this.testResult = "Vanguardista";
+			}else if(eres === this.toper){
+				this.testResult = "Toper";
+			}else if(eres === this.tradicional){
+				this.testResult = "Tradicional";
+			}else if(eres === this.gourmet){
+				this.testResult = "Gourmet";
+			}else{
+				this.testResult = "Tocinero";
 			}
 		}
 	}
