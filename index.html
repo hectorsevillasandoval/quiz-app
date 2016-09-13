@@ -20,141 +20,142 @@
 
 
     <div class=" ">
-    	
+
         <div class="quiz-wrapper row">
             <div class="col s10 offset-s1" style="background-color:transparent">
 
-              <div class="section center-align">
-                <h1 class="center-align white-text main-title">
+                <div class="section center-align">
+                    <h1 class="center-align white-text main-title">
                   <span>Cual es tu</span>
                      <br> <span class="special">¿  Baconalidad ?</span>
                 </h1>
-                <button class="btn waves-effect waves-light red darken-1 btn start center-align">Tomar el QUIZ</button>
-              </div>
+                    <button class="btn waves-effect waves-light red darken-1 btn start center-align">Tomar el QUIZ</button>
+                </div>
 
-<div class="section">
+                <div class="section">
 
-                <form action="#" id="quiz"  >
+                    <form action="#" id="quiz">
 
 
 
                         <div class="question slide" v-for="question in questions" data-anchor="{{ question.id }}">
-                            
+
                             <p class="center-align">
                                 <span class="icono"> {{ question.id }} </span>
                                 <span class="question-text"> {{ question.question }}</span>
                                 <br>
-							</p>
-                            <div v-if="question.picture_url.length != 0" >
+                            </p>
+                            <div v-if="question.picture_url.length != 0">
 
-                            <!-- Image  -->
-                            <div class="image center">
-                                <img src="{{ question.picture_url }}" alt="" class="responsive-img circle">
-                            </div>
+                                <!-- Image  -->
+                                <div class="image center">
+                                    <img src="{{ question.picture_url }}" alt="" class="responsive-img circle">
+                                </div>
 
 
-                            	
-                            
+
+
 
                                 <div class="center-align">
 
 
-                                <template v-for="optionQuestion in question.options">
+                                    <template v-for="optionQuestion in question.options">
 
-									
-										
 
-									
 
-                                    <input type="radio" class="with-gap" value="{{ optionQuestion }}" id="question{{ question.id }}-{{ $index }}" name="question{{ question.id }}"  v-model="question.chosen">
-                                    <label for="question{{ question.id }}-{{ $index }}">{{ optionQuestion }}</label>
-									
 
-									
 
-                                </template>
 
-                                </div>
+                                        <input type="radio" class="with-gap" value="{{ optionQuestion }}" id="question{{ question.id }}-{{ $index }}" name="question{{ question.id }}" v-model="question.chosen">
+                                        <label for="question{{ question.id }}-{{ $index }}">{{ optionQuestion }}</label>
+
+
+
+
+                                    </template>
 
                                 </div>
-                                <div v-else>
-                                	
-                                	<div class="left-align">
-<div class="row ">
 
-                                <template v-for="optionQuestion in question.imageOptions">
+                            </div>
+                            <div v-else>
 
-									
-									
-            
-            <div class="col s6">
-            <div class="row valign-wrapper">
-            	<div class="col s4">
-            	<img :src="optionQuestion" alt="" class="circle responsive-img image2 valign"> <!-- notice the "circle" class -->
-            		
-            	</div>
+                                <div class="left-align">
+                                    <div class="row ">
 
-            	<div class="col s8">
+                                        <template v-for="optionQuestion in question.imageOptions">
 
-            	<span class="black-text">
+
+
+
+                                            <div class="col s12 m6">
+                                                <div class="row valign-wrapper">
+                                                    <div class="col s4">
+                                                        <img :src="optionQuestion" alt="" class="circle responsive-img image2 valign">
+                                                        <!-- notice the "circle" class -->
+
+                                                    </div>
+
+                                                    <div class="col s8">
+
+                                                        <span class="black-text">
                 <input type="radio" class="with-gap" value="{{ question.options[$index] }}" id="question{{ question.id }}-{{ $index }}" name="question{{ question.id }}"  v-model="question.chosen">
                                     <label for="question{{ question.id }}-{{ $index }}">{{ question.options[$index] }}</label>
               </span>
-            		
-            	</div>
 
-            </div>
+                                                    </div>
 
-            
-              
-            </div>
-          
+                                                </div>
 
-									
-									
-									
 
-									
 
-                                </template>
-                                </div>
+                                            </div>
 
-                                </div>
+
+
+
+
+
+
+
+                                        </template>
+                                    </div>
 
                                 </div>
 
-
-                                <p class="center-align">
-                                	
-
-                                
-
-                                	<button :class="question.chosen.length ? ['waves-effect', 'waves-light', 'red', 'darken-1', 'btn', 'next'] : ['btn', 'disabled']" id="next" data-next="{{ question.buttonNext }} " v-if="question.buttonNext != 0" @click.prevent = "addElement(question)">Siguiente</button>
-
-                                	<button type="button" :class="question.chosen.length ? ['waves-effect', 'waves-light', 'red', 'darken-1', 'btn', 'end'] : ['btn', 'disabled']" id="send" @click.prevent="addElement(question)" v-else>Ver Resultado</button>
+                            </div>
 
 
-								</p>
-                            
+                            <p class="center-align">
+
+
+
+
+                                <button :class="question.chosen.length ? ['waves-effect', 'waves-light', 'red', 'darken-1', 'btn', 'next'] : ['btn', 'disabled']" id="next" data-next="{{ question.buttonNext }} " v-if="question.buttonNext != 0" @click.prevent="addElement(question)">Siguiente</button>
+
+                                <button type="button" :class="question.chosen.length ? ['waves-effect', 'waves-light', 'red', 'darken-1', 'btn', 'end'] : ['btn', 'disabled']" id="send" @click.prevent="addElement(question)" v-else>Ver Resultado</button>
+
+
+                            </p>
+
 
                         </div>
 
 
 
-                </form>
+                    </form>
                 </div>
 
-		<!-- RESULTADO -->
+                <!-- RESULTADO -->
 
-		<div class="section center-align">
+                <div class="section center-align">
 
-			<h2 class="white-text">Sos un <br> <span class="special-resultado"> {{ testResult }}</span></h2>
+                    <h2 class="white-text">Sos un <br> <span class="special-resultado"> {{ testResult }}</span></h2>
 
-			<div id="share">
-				<a href="#" class="share">Compartí tu resultado</a>
-			</div>
+                    <div id="share">
+                        <a href="#" class="share">Compartí tu resultado</a>
+                    </div>
 
-		</div>
+                </div>
 
 
             </div>
@@ -174,7 +175,7 @@
     <script src="hideshare.js"></script>
 
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.6/jquery.fullPage.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.quiz-wrapper').fullpage({
@@ -188,46 +189,47 @@
                 slidesNavPosition: 'bottom',
                 controlArrows: false,
                 fitToSection: true,
-                autoScrolling:true
+                autoScrolling: true
             });
 
             $.fn.fullpage.setAllowScrolling(false, 'left, right, down, up');
 
-            $(document).on('click', '.next', function(e){
-              $.fn.fullpage.moveSlideRight();
-              e.preventDefault();
+            $(document).on('click', '.next', function(e) {
+                $.fn.fullpage.moveSlideRight();
+                e.preventDefault();
 
             });
 
-            $(document).on('click', '.end', function(e){
-              $.fn.fullpage.moveSectionDown();
-              //e.preventDefault();
+            $(document).on('click', '.end', function(e) {
+                $.fn.fullpage.moveSectionDown();
+                //e.preventDefault();
 
             });
-            $(document).on('click', '.start', function(e){
-              $.fn.fullpage.moveSectionDown();
-              //e.preventDefault();
+            $(document).on('click', '.start', function(e) {
+                $.fn.fullpage.moveSectionDown();
+                //e.preventDefault();
 
             });
 
 
             $(".share").hideshare({
-              link: "http://baconalidad.com",
-              title: "Cual es tu #baconalidad?",
-              media: "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/quizzes/bacon_sizzling_facts_rmq/650x350_bacon_sizzling_facts_rmq.jpg",
-              pinterest: false,
-              googleplus: false,
-              linkedin: false,
-              position: "bottom"
+                link: "http://baconalidad.com",
+                title: "Cual es tu #baconalidad?",
+                media: "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/quizzes/bacon_sizzling_facts_rmq/650x350_bacon_sizzling_facts_rmq.jpg",
+                pinterest: false,
+                googleplus: false,
+                linkedin: false,
+                position: "bottom"
             });
 
-            $(".special").textillate({
-              in: { effect: 'rubberBand' },
-              loop: false
+            $(".special").textillate({ in: {
+                    effect: 'rubberBand'
+                },
+                loop: false
             });
 
             /*$(".special").fitText(0.8, { minFontSize: '20px', maxFontSize: '100px' });*/
-            
+
 
         });
     </script>
@@ -235,17 +237,17 @@
     <script src="app.js"></script>
 
 
-<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDrji4BK4pa_ud7Ro4PkYTgxGPGrUfEdek",
-    authDomain: "vue-quiz.firebaseapp.com",
-    databaseURL: "https://vue-quiz.firebaseio.com",
-    storageBucket: "",
-  };
-  firebase.initializeApp(config);
-</script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDrji4BK4pa_ud7Ro4PkYTgxGPGrUfEdek",
+            authDomain: "vue-quiz.firebaseapp.com",
+            databaseURL: "https://vue-quiz.firebaseio.com",
+            storageBucket: "",
+        };
+        firebase.initializeApp(config);
+    </script>
 
 </body>
 
